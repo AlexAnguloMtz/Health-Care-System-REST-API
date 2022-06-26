@@ -10,28 +10,13 @@ import java.util.Set;
 @Table(name = "doctor")
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
-@Builder
-public class Doctor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    @Getter
-    private Integer id;
-
-    @Getter @Column(name = "paternal_surname")
-    private String paternalSurname;
-
-    @Getter @Column(name = "maternal_surname")
-    private String maternalSurname;
+public class Doctor extends AbstractPerson {
 
     @Getter @Column(name = "speciality")
     private String speciality;
 
-    @Getter @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
-    private Set<Appointment> appointments;
-
+    public Doctor(Integer id, String paternalSurname, String maternalSurname, String speciality) {
+        super(id, paternalSurname, maternalSurname);
+        this.speciality = speciality;
+    }
 }

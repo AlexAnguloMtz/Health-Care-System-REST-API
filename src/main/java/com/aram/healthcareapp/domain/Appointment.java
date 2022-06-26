@@ -13,18 +13,11 @@ import java.time.LocalDateTime;
 @Table(name = "appointment")
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Appointment {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Integer id;
+public class Appointment extends AbstractEntity {
 
     @Getter
     @ManyToOne
     @JoinColumn(name = "doctor_id")
-    @JsonBackReference
     private Doctor doctor;
 
     @Getter

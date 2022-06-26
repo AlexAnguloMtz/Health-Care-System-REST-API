@@ -13,14 +13,7 @@ import java.util.Set;
 @Table(name = "medical_office")
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class MedicalOffice {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    @Getter
-    private Integer id;
+public class MedicalOffice extends AbstractEntity {
 
     @Getter @Column(name = "office_number")
     private String officeNumber;

@@ -33,12 +33,6 @@ public class DoctorController {
         return new ResponseEntity<>(doctor, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/appointments")
-    Collection<Appointment> findDoctorAppointments(@PathVariable Integer id) {
-        Doctor doctor = findById(id);
-        return doctor.getAppointments();
-    }
-
     Doctor findById(Integer id) {
         Optional<Doctor> doctorOptional = doctorService.findById(id);
         return doctorOptional.orElseThrow(
@@ -71,13 +65,12 @@ public class DoctorController {
     }
 
     private Doctor mapRequestBodyToNewDoctor(Doctor oldDoctor, Doctor doctorRequestBody) {
-        return Doctor.builder()
-                .id(oldDoctor.getId())
-                .paternalSurname(doctorRequestBody.getPaternalSurname())
-                .maternalSurname(doctorRequestBody.getMaternalSurname())
-                .speciality(doctorRequestBody.getSpeciality())
-                .appointments(oldDoctor.getAppointments())
-                .build();
+        return new Doctor(
+                oldDoctor.getId(),
+                doctorRequestBody.getPaternalSurname(),
+                doctorRequestBody.getMaternalSurname(),
+                doctorRequestBody.getSpeciality()
+        );
     }
 
 }
