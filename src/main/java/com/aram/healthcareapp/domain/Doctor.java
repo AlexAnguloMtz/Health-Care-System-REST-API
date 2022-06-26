@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 @Table(name = "doctor")
 @NoArgsConstructor
-@ToString
 public class Doctor extends AbstractPerson {
 
     @Getter @Column(name = "speciality")
@@ -19,4 +18,5 @@ public class Doctor extends AbstractPerson {
         super(id, name);
         this.speciality = speciality;
     }
+
 }

@@ -1,6 +1,5 @@
 package com.aram.healthcareapp.controller;
 
-import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.domain.Doctor;
 import com.aram.healthcareapp.service.DoctorService;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,7 @@ import static com.aram.healthcareapp.domain.ErrorCode.DOCTOR_DOES_NOT_EXIST;
 
 @RestController
 @RequestMapping("/doctors")
-public class DoctorController {
+class DoctorController {
 
     private final DoctorService doctorService;
 
@@ -22,8 +21,8 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @GetMapping
-    Collection<Doctor> findAllDoctors() {
+    @GetMapping("/all")
+    Collection<Doctor> findAll() {
         return doctorService.findAll();
     }
 

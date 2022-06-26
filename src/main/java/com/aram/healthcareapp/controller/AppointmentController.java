@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/appointments")
-public class AppointmentController {
+class AppointmentController {
 
     private final MedicalOfficeService medicalOfficeService;
     private final AppointmentService appointmentService;
@@ -23,7 +23,7 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     Collection<Appointment> findAll() {
         return appointmentService.findAll();
     }

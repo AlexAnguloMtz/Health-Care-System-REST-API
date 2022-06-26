@@ -1,11 +1,15 @@
 package com.aram.healthcareapp.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor(force = true)
+@ToString
+@Getter
 public class Name {
 
     private final String firstName;

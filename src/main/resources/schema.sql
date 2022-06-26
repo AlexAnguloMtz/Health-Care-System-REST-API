@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS medical_office;
 
 CREATE TABLE patient(
     id INT NOT NULL AUTO_INCREMENT,
+    social_security_number VARCHAR(11) NOT NULL,
     paternal_surname VARCHAR(40) NOT NULL,
     maternal_surname VARCHAR(40) NOT NULL,
     first_name VARCHAR(40) NOT NULL,

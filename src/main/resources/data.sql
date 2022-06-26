@@ -5,17 +5,17 @@ INSERT INTO doctor(paternal_surname, maternal_surname, first_name, middle_name, 
           ("Daniels", "Rivera", "Luis", "Miguel", "Dermatology"),
           ("Melendez", "Avila", "Laura",  "Lizbeth", "Pediatrics");
 
-INSERT INTO patient(paternal_surname, maternal_surname, first_name, middle_name)
-    VALUES("Arce", "Pinos", "Daniel", "Manuel"),
-          ("Hernandez", "Garcia", "Lucas", "Leonardo"),
-          ("Martinez", "Lopez", "Alejandro", "Manuel"),
-          ("Gonzalez", "Perez", "Arturo", "Mateo"),
-          ("Rodriguez", "Sanchez", "Daniela", "Luz"),
-          ("Torres", "Reyes", "Carolina", "Andrea"),
-          ("Bajonero", "Zepeda", "Ailyn", "Ximena"),
-          ("Zuniga", "Hernandez", "Claudia", "Laura"),
-          ("Romo", "Arce", "Lizeth", "Diana"),
-          ("Corral", "Verdugo", "Luisa", "Fernanda");
+INSERT INTO patient(paternal_surname, maternal_surname, first_name, middle_name, social_security_number)
+    VALUES("Arce", "Pinos", "Daniel", "Manuel", "423-53-6346"),
+          ("Hernandez", "Garcia", "Lucas", "Leonardo", "634-57-4857"),
+          ("Martinez", "Lopez", "Alejandro", "Manuel", "243-13-2547"),
+          ("Gonzalez", "Perez", "Arturo", "Mateo", "356-24-4657"),
+          ("Rodriguez", "Sanchez", "Daniela", "Luz", "232-53-3656"),
+          ("Torres", "Reyes", "Carolina", "Andrea", "536-68-4645"),
+          ("Bajonero", "Zepeda", "Ailyn", "Ximena", "576-35-2412"),
+          ("Zuniga", "Hernandez", "Claudia", "Laura", "354-13-5346"),
+          ("Romo", "Arce", "Lizeth", "Diana", "423-57-6864"),
+          ("Corral", "Verdugo", "Luisa", "Fernanda", "534-57-2446");
 
 
 INSERT INTO medical_office(office_number, floor)
