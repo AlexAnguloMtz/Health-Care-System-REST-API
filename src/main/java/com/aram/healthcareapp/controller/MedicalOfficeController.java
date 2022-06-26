@@ -25,9 +25,4 @@ public class MedicalOfficeController {
         return medicalOfficeService.findAll();
     }
 
-    @GetMapping("/{id}")
-    MedicalOffice findById(@PathVariable Integer id) {
-        return medicalOfficeService.findById(id);
-    }
-
 }

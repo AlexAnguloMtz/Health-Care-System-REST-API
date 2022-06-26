@@ -1,5 +1,6 @@
 package com.aram.healthcareapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,10 +27,5 @@ public class MedicalOffice {
 
     @Getter @Column(name = "floor")
     private String floor;
-
-    @Getter
-    @OneToMany(mappedBy = "medicalOffice")
-    Set<Appointment> appointmentSet;
-
 
 }

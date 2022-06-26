@@ -1,7 +1,7 @@
 package com.aram.healthcareapp.controller;
 
+import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.domain.Doctor;
-import com.aram.healthcareapp.domain.ErrorCode;
 import com.aram.healthcareapp.service.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,18 @@ public class DoctorController {
     }
 
     @GetMapping("/{id}")
-    Doctor findById(@PathVariable Integer id) {
+    ResponseEntity<Doctor> findDoctor(@PathVariable Integer id) {
+        Doctor doctor = findById(id);
+        return new ResponseEntity<>(doctor, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/appointments")
+    Collection<Appointment> findDoctorAppointments(@PathVariable Integer id) {
+        Doctor doctor = findById(id);
+        return doctor.getAppointments();
+    }
+
+    Doctor findById(Integer id) {
         Optional<Doctor> doctorOptional = doctorService.findById(id);
         return doctorOptional.orElseThrow(
                 () -> new RuntimeException(DOCTOR_DOES_NOT_EXIST.toString()));

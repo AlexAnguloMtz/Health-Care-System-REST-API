@@ -1,5 +1,6 @@
 package com.aram.healthcareapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class Doctor {
     @Getter @Column(name = "speciality")
     private String speciality;
 
-    @Getter
+    @Getter @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
     private Set<Appointment> appointments;
 

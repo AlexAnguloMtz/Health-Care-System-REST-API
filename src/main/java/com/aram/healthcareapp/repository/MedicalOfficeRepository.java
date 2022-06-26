@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MedicalOfficeRepository extends JpaRepository<MedicalOffice, Integer> {
-
 }
