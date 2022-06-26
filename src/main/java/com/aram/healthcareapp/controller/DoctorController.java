@@ -1,13 +1,16 @@
 package com.aram.healthcareapp.controller;
 
 import com.aram.healthcareapp.domain.Doctor;
+import com.aram.healthcareapp.domain.ErrorCode;
 import com.aram.healthcareapp.service.DoctorService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
+
+import static com.aram.healthcareapp.domain.ErrorCode.DOCTOR_DOES_NOT_EXIST;
 
 @RestController
 @RequestMapping("/doctors")
@@ -20,13 +23,50 @@ public class DoctorController {
     }
 
     @GetMapping
-    private Collection<Doctor> findAllDoctors() {
+    Collection<Doctor> findAllDoctors() {
         return doctorService.findAll();
     }
 
     @GetMapping("/{id}")
-    private Doctor findById(@PathVariable Integer id) {
-        return doctorService.findById(id);
+    Doctor findById(@PathVariable Integer id) {
+        Optional<Doctor> doctorOptional = doctorService.findById(id);
+        return doctorOptional.orElseThrow(
+                () -> new RuntimeException(DOCTOR_DOES_NOT_EXIST.toString()));
+    }
+
+    @PostMapping
+    ResponseEntity<Doctor> save(@RequestBody Doctor doctor) {
+        Doctor savedDoctor = doctorService.save(doctor);
+        return new ResponseEntity<>(doctor, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    ResponseEntity<Doctor> updateDoctor(@RequestBody Doctor doctorRequestBody, @PathVariable Integer id) {
+        Optional<Doctor> oldDoctorOptional = doctorService.findById(id);
+        if(oldDoctorOptional.isPresent()) {
+            Doctor oldDoctor = oldDoctorOptional.get();
+            Doctor newDoctor = mapRequestBodyToNewDoctor(oldDoctor, doctorRequestBody);
+            Doctor savedDoctor = doctorService.save(newDoctor);
+            return new ResponseEntity<>(savedDoctor, HttpStatus.OK);
+        }
+        Doctor savedDoctor = doctorService.save(doctorRequestBody);
+        return new ResponseEntity<>(savedDoctor, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    HttpStatus deleteDoctor(@PathVariable Integer id) {
+        doctorService.deleteDoctor(id);
+        return HttpStatus.OK;
+    }
+
+    private Doctor mapRequestBodyToNewDoctor(Doctor oldDoctor, Doctor doctorRequestBody) {
+        return Doctor.builder()
+                .id(oldDoctor.getId())
+                .paternalSurname(doctorRequestBody.getPaternalSurname())
+                .maternalSurname(doctorRequestBody.getMaternalSurname())
+                .speciality(doctorRequestBody.getSpeciality())
+                .appointments(oldDoctor.getAppointments())
+                .build();
     }
 
 }

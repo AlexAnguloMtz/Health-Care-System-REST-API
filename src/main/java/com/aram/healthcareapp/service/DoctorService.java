@@ -21,10 +21,14 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
-    public Doctor findById(Integer id) {
-        Optional<Doctor> doctorOptional = doctorRepository.findById(id);
-        return doctorOptional.orElseThrow(
-                () -> new RuntimeException(DOCTOR_DOES_NOT_EXIST.toString()));
+    public Optional<Doctor> findById(Integer id) {
+        return doctorRepository.findById(id);
     }
 
+    public Doctor save(Doctor doctor) {
+        return doctorRepository.save(doctor);
+    }
+
+    public void deleteDoctor(Integer id) {
+    }
 }
