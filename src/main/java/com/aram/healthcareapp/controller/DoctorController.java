@@ -67,8 +67,7 @@ public class DoctorController {
     private Doctor mapRequestBodyToNewDoctor(Doctor oldDoctor, Doctor doctorRequestBody) {
         return new Doctor(
                 oldDoctor.getId(),
-                doctorRequestBody.getPaternalSurname(),
-                doctorRequestBody.getMaternalSurname(),
+                doctorRequestBody.getName(),
                 doctorRequestBody.getSpeciality()
         );
     }

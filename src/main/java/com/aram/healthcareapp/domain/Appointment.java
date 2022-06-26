@@ -28,7 +28,4 @@ public class Appointment extends AbstractEntity {
     @Getter @Column(name = "date_time")
     private LocalDateTime dateTime;
 
-    @Getter
-    private String patientName;
-
 }

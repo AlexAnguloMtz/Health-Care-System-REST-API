@@ -3,25 +3,25 @@ package com.aram.healthcareapp.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @MappedSuperclass
 abstract class AbstractPerson extends AbstractEntity {
 
     @Getter
-    @Column(name = "paternal_surname")
-    protected String paternalSurname;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride( name = "firstName", column = @Column(name = "first_name")),
+            @AttributeOverride( name = "middleName", column = @Column(name = "middle_name")),
+            @AttributeOverride( name = "paternalSurname", column = @Column(name = "paternal_surname")),
+            @AttributeOverride( name = "maternalSurname", column = @Column(name = "maternal_surname"))
+    })
+    private Name name;
 
-    @Getter
-    @Column(name = "maternal_surname")
-    protected String maternalSurname;
-
-    public AbstractPerson(Integer id, String paternalSurname, String maternalSurname) {
+    public AbstractPerson(Integer id, Name name) {
         super(id);
-        this.paternalSurname = paternalSurname;
-        this.maternalSurname = maternalSurname;
+        this.name = name;
     }
 
 }

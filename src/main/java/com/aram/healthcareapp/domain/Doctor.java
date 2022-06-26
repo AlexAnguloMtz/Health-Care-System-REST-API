@@ -15,8 +15,8 @@ public class Doctor extends AbstractPerson {
     @Getter @Column(name = "speciality")
     private String speciality;
 
-    public Doctor(Integer id, String paternalSurname, String maternalSurname, String speciality) {
-        super(id, paternalSurname, maternalSurname);
+    public Doctor(Integer id, Name name, String speciality) {
+        super(id, name);
         this.speciality = speciality;
     }
 }

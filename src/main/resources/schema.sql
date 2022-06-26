@@ -1,18 +1,27 @@
 DROP TABLE IF EXISTS appointment;
 DROP TABLE IF EXISTS doctor;
+DROP TABLE IF EXISTS patient;
 DROP TABLE IF EXISTS medical_office;
 
 
-CREATE TABLE doctor(
+CREATE TABLE patient(
     id INT NOT NULL AUTO_INCREMENT,
     paternal_surname VARCHAR(40) NOT NULL,
     maternal_surname VARCHAR(40) NOT NULL,
-    speciality VARCHAR(30) NOT NULL,
+    first_name VARCHAR(40) NOT NULL,
+    middle_name VARCHAR(40) NOT NULL,
     PRIMARY KEY(id)
 )  ENGINE=INNODB;
 
-
-
+CREATE TABLE doctor(
+    id INT NOT NULL AUTO_INCREMENT,
+    speciality VARCHAR(30) NOT NULL,
+    paternal_surname VARCHAR(40) NOT NULL,
+    maternal_surname VARCHAR(40) NOT NULL,
+    first_name VARCHAR(40) NOT NULL,
+    middle_name VARCHAR(40) NOT NULL,
+    PRIMARY KEY(id)
+)  ENGINE=INNODB;
 
 CREATE TABLE medical_office(
     id INT NOT NULL AUTO_INCREMENT,
@@ -21,18 +30,17 @@ CREATE TABLE medical_office(
     PRIMARY KEY(id)
 ) ENGINE=INNODB;
 
-
-
-
 CREATE TABLE appointment(
     id INT NOT NULL AUTO_INCREMENT,
-    medical_office_id INT NOT NULL,
     doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
+    medical_office_id INT NOT NULL,
     date_time DATETIME NOT NULL,
-    patient_name VARCHAR(80) NOT NULL,
-    FOREIGN KEY (medical_office_id)
-            REFERENCES medical_office(id),
     FOREIGN KEY (doctor_id)
         REFERENCES doctor(id),
+    FOREIGN KEY (patient_id)
+        REFERENCES patient(id),
+    FOREIGN KEY (medical_office_id)
+        REFERENCES medical_office(id),
     PRIMARY KEY(id)
 ) ENGINE=INNODB;

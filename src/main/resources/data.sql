@@ -1,9 +1,22 @@
-INSERT INTO doctor(paternal_surname, maternal_surname, speciality)
-    VALUES("Jimenez", "Pinos", "Internal Medicine"),
-          ("Suarez", "Rodriguez", "Otorhinolaryngology"),
-          ("Mendez", "Vasquez", "Neumology"),
-          ("Daniels", "Rivera", "Dermatology"),
-          ("Melendez", "Avila", "Pediatrics");
+INSERT INTO doctor(paternal_surname, maternal_surname, first_name, middle_name, speciality)
+    VALUES("Jimenez", "Pinos", "Luis", "Abraham", "Internal Medicine"),
+          ("Suarez", "Rodriguez", "Daniel", "Ariel", "Otorhinolaryngology"),
+          ("Mendez", "Vasquez", "Rodrigo", "Daniel", "Neumology"),
+          ("Daniels", "Rivera", "Luis", "Miguel", "Dermatology"),
+          ("Melendez", "Avila", "Laura",  "Lizbeth", "Pediatrics");
+
+INSERT INTO patient(paternal_surname, maternal_surname, first_name, middle_name)
+    VALUES("Arce", "Pinos", "Daniel", "Manuel"),
+          ("Hernandez", "Garcia", "Lucas", "Leonardo"),
+          ("Martinez", "Lopez", "Alejandro", "Manuel"),
+          ("Gonzalez", "Perez", "Arturo", "Mateo"),
+          ("Rodriguez", "Sanchez", "Daniela", "Luz"),
+          ("Torres", "Reyes", "Carolina", "Andrea"),
+          ("Bajonero", "Zepeda", "Ailyn", "Ximena"),
+          ("Zuniga", "Hernandez", "Claudia", "Laura"),
+          ("Romo", "Arce", "Lizeth", "Diana"),
+          ("Corral", "Verdugo", "Luisa", "Fernanda");
+
 
 INSERT INTO medical_office(office_number, floor)
     VALUES(100,1),
@@ -13,15 +26,15 @@ INSERT INTO medical_office(office_number, floor)
           (300,3),
           (301,3);
 
-INSERT INTO appointment(doctor_id, medical_office_id, date_time, patient_name)
-    VALUES(1, 1, '2022-10-05 09:00:00', "Jose Jimenez"),
-          (1, 1, '2022-11-17 11:00:00', "Daniel Alvarez"),
-          (2, 2, '2022-10-02 13:00:00', "Alberto Dominguez"),
-          (2, 2, '2022-09-05 14:00:00', "Linda Arce"),
-          (3, 3, '2022-10-05 08:00:00', "Manuel Andres"),
-          (3, 3, '2022-10-05 09:00:00', "Josue Juarez"),
-          (4, 4, '2022-10-05 07:00:00', "Daniela Aviles"),
-          (4, 4, '2022-10-05 08:00:00', "Laura Ibarra"),
-          (5, 5, '2022-10-05 12:00:00', "Juan Leonidas"),
-          (5, 5, '2022-10-05 13:00:00', "Karen Palomares");
+INSERT INTO appointment(doctor_id, patient_id, medical_office_id, date_time)
+    VALUES(1, 1,  1,  '2022-10-05 09:00:00'),
+          (1, 2,  1,  '2022-11-17 11:00:00'),
+          (2, 3,  2,  '2022-10-02 13:00:00'),
+          (2, 4,  2,  '2022-09-05 14:00:00'),
+          (3, 5,  3,  '2022-10-05 08:00:00'),
+          (3, 6,  3,  '2022-10-05 09:00:00'),
+          (4, 7,  4,  '2022-10-05 07:00:00'),
+          (4, 8,  4,  '2022-10-05 08:00:00'),
+          (5, 9,  5,  '2022-10-05 12:00:00'),
+          (5, 10, 5,  '2022-10-05 13:00:00');
 
