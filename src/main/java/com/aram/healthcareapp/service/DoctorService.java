@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
-import static com.aram.healthcareapp.domain.ErrorCode.DOCTOR_DOES_NOT_EXIST;
 
 @Service
 public class DoctorService {

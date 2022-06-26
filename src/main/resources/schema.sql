@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS doctor;
 DROP TABLE IF EXISTS patient;
 DROP TABLE IF EXISTS medical_office;
 
-
 CREATE TABLE patient(
     id INT NOT NULL AUTO_INCREMENT,
     social_security_number VARCHAR(11) NOT NULL,
@@ -31,14 +30,18 @@ CREATE TABLE medical_office(
     PRIMARY KEY(id)
 ) ENGINE=INNODB;
 
+-- doctor_id is allowed to be null because we don't
+-- want to lose an appointment for a patient if a doctor is deleted,
+-- so when this occurs we can assign another doctor for those orphan appointments
 CREATE TABLE appointment(
     id INT NOT NULL AUTO_INCREMENT,
-    doctor_id INT NOT NULL,
+    doctor_id INT,
     patient_id INT NOT NULL,
     medical_office_id INT NOT NULL,
     date_time DATETIME NOT NULL,
     FOREIGN KEY (doctor_id)
-        REFERENCES doctor(id),
+        REFERENCES doctor(id)
+        ON DELETE SET NULL,
     FOREIGN KEY (patient_id)
         REFERENCES patient(id),
     FOREIGN KEY (medical_office_id)

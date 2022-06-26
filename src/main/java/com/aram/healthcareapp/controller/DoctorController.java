@@ -2,17 +2,16 @@ package com.aram.healthcareapp.controller;
 
 import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.domain.Doctor;
+import com.aram.healthcareapp.domain.exception.DoctorDoesNotExistException;
 import com.aram.healthcareapp.service.AppointmentService;
 import com.aram.healthcareapp.service.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
 import java.util.Optional;
 
-import static com.aram.healthcareapp.domain.ErrorCode.DOCTOR_DOES_NOT_EXIST;
 
 @RestController
 @RequestMapping("/doctors")
@@ -45,8 +44,7 @@ class DoctorController {
 
     Doctor findById(Integer id) {
         Optional<Doctor> doctorOptional = doctorService.findById(id);
-        return doctorOptional.orElseThrow(
-                () -> new RuntimeException(DOCTOR_DOES_NOT_EXIST.toString()));
+        return doctorOptional.orElseThrow(() -> new DoctorDoesNotExistException(id));
     }
 
     @PostMapping
