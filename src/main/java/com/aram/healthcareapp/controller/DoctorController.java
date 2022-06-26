@@ -1,11 +1,14 @@
 package com.aram.healthcareapp.controller;
 
+import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.domain.Doctor;
+import com.aram.healthcareapp.service.AppointmentService;
 import com.aram.healthcareapp.service.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -16,9 +19,11 @@ import static com.aram.healthcareapp.domain.ErrorCode.DOCTOR_DOES_NOT_EXIST;
 class DoctorController {
 
     private final DoctorService doctorService;
+    private final AppointmentService appointmentService;
 
-    public DoctorController(DoctorService doctorService) {
+    public DoctorController(DoctorService doctorService, AppointmentService appointmentService) {
         this.doctorService = doctorService;
+        this.appointmentService = appointmentService;
     }
 
     @GetMapping("/all")
@@ -30,6 +35,12 @@ class DoctorController {
     ResponseEntity<Doctor> findDoctor(@PathVariable Integer id) {
         Doctor doctor = findById(id);
         return new ResponseEntity<>(doctor, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/appointments")
+    Collection<Appointment> findAppointmentsForDoctor(@PathVariable Integer id) {
+        Doctor doctor = findById(id);
+        return appointmentService.findAppointmentsForDoctor(doctor.getId());
     }
 
     Doctor findById(Integer id) {

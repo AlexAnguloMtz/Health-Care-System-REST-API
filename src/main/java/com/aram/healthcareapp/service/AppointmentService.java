@@ -21,4 +21,7 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
+    public Collection<Appointment> findAppointmentsForDoctor(Integer doctorId) {
+        return appointmentRepository.findAllByDoctorId(doctorId);
+    }
 }
