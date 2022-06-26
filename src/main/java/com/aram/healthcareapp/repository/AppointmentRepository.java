@@ -9,4 +9,6 @@ import java.util.Collection;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
     Collection<Appointment> findAllByDoctorId(Integer doctorId);
+
+    Collection<Appointment> findAllByPatientId(Integer patientId);
 }

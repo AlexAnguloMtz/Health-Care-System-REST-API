@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -18,5 +19,9 @@ public class PatientService {
 
     public Collection<Patient> findAll() {
         return patientRepository.findAll();
+    }
+
+    public Optional<Patient> findById(Integer id) {
+        return patientRepository.findById(id);
     }
 }
