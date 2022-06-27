@@ -54,7 +54,7 @@ class DoctorController {
     Doctor findById(Integer id) {
         Optional<Doctor> doctorOptional = doctorService.findById(id);
         return doctorOptional.orElseThrow(
-            () -> new ResourceDoesNotExistException(format("Doctor with id %d does not exist",id)));
+            () -> new ResourceDoesNotExistException(format("Doctor with id %d does not exist", id)));
     }
 
     @PostMapping
