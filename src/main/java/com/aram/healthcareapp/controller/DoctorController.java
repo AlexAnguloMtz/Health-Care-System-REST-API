@@ -45,6 +45,12 @@ class DoctorController {
         return appointmentService.findAppointmentsForDoctor(doctor.getId());
     }
 
+
+    @GetMapping("/with-speciality/{specialityId}")
+    Collection<Doctor> findAllWithSpeciality(@PathVariable Integer specialityId) {
+        return doctorService.findBySpecialityId(specialityId);
+    }
+
     Doctor findById(Integer id) {
         Optional<Doctor> doctorOptional = doctorService.findById(id);
         return doctorOptional.orElseThrow(

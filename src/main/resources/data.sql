@@ -7,9 +7,14 @@ INSERT INTO speciality(name)
 
 INSERT INTO doctor(speciality_id, paternal_surname, maternal_surname, first_name, middle_name)
     VALUES(1, "Jimenez", "Pinos", "Luis", "Abraham"),
+          (1, "Gutierrez", "Sanchez", "Mariana", "Flor"),
+          (2, "Davila", "Ozuna", "Dayra", "Renata"),
           (2, "Suarez", "Rodriguez", "Daniel", "Ariel"),
           (3, "Mendez", "Vasquez", "Rodrigo", "Daniel"),
-          (4, "Daniels", "Rivera", "Luis", "Miguel"),
+          (3, "Lares", "Ojeda", "Patricia", "Selma"),
+          (4, "Vazquez", "Nieto", "Mario", "Luis"),
+          (4, "Juarez", "Rivera", "Luis", "Miguel"),
+          (5, "Trejo", "Contreras", "Luz", "Andrea"),
           (5, "Melendez", "Avila", "Laura",  "Lizbeth");
 
 INSERT INTO patient(paternal_surname, maternal_surname, first_name, middle_name, social_security_number)

@@ -37,4 +37,8 @@ public class DoctorService {
     public void deleteDoctor(Integer id) {
         doctorRepository.deleteById(id);
     }
+
+    public Collection<Doctor> findBySpecialityId(Integer specialityId) {
+        return doctorRepository.findBySpecialityId(specialityId);
+    }
 }
