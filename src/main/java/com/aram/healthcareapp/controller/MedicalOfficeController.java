@@ -15,7 +15,7 @@ class MedicalOfficeController {
     private final MedicalOfficeService medicalOfficeService;
 
 
-    public MedicalOfficeController(MedicalOfficeService medicalOfficeService) {
+    MedicalOfficeController(MedicalOfficeService medicalOfficeService) {
         this.medicalOfficeService = medicalOfficeService;
     }
 

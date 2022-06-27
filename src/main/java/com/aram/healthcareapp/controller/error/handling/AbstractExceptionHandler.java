@@ -1,4 +1,4 @@
-package com.aram.healthcareapp.controller;
+package com.aram.healthcareapp.controller.error.handling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

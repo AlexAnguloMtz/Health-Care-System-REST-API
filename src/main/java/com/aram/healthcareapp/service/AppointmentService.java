@@ -2,6 +2,7 @@ package com.aram.healthcareapp.service;
 
 import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.repository.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,7 @@ public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
 
+    @Autowired
     public AppointmentService(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
     }
@@ -21,10 +23,12 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
+    @Transactional
     public Collection<Appointment> findAppointmentsForDoctor(Integer doctorId) {
         return appointmentRepository.findAllByDoctorId(doctorId);
     }
 
+    @Transactional
     public Collection<Appointment> findAppointmentsForPatient(Integer patientId) {
         return appointmentRepository.findAllByPatientId(patientId);
     }

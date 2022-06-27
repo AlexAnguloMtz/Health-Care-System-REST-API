@@ -2,17 +2,19 @@ package com.aram.healthcareapp.controller;
 
 import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.domain.Patient;
-import com.aram.healthcareapp.domain.exception.PatientDoesNotExistException;
+import com.aram.healthcareapp.domain.exception.ResourceDoesNotExistException;
 import com.aram.healthcareapp.service.AppointmentService;
 import com.aram.healthcareapp.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
+
+import static java.lang.String.format;
 
 @RestController
 @RequestMapping("/patients")
@@ -43,9 +45,16 @@ class PatientController {
         return appointmentService.findAppointmentsForPatient(patient.getId());
     }
 
+    @PostMapping
+    ResponseEntity<Patient> savePatient(@RequestBody @Valid Patient patient) {
+        Patient savedPatient = patientService.save(patient);
+        return new ResponseEntity<Patient>(savedPatient, HttpStatus.CREATED);
+    }
+
     private Patient findById(Integer id) {
         Optional<Patient> patientOptional = patientService.findById(id);
-        return patientOptional.orElseThrow(() -> new PatientDoesNotExistException(id));
+        return patientOptional.orElseThrow(
+                () -> new ResourceDoesNotExistException(format("This patient does not exist", id)));
     }
 
 }

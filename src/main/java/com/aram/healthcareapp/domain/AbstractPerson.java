@@ -5,13 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 
-@NoArgsConstructor
 @MappedSuperclass
+@NoArgsConstructor
+@Getter
 abstract class AbstractPerson extends AbstractEntity {
 
     @Embedded
-    @Getter
+    @Valid
     @JsonUnwrapped
     @AttributeOverrides({
             @AttributeOverride(name = "firstName", column = @Column(name = "first_name")),

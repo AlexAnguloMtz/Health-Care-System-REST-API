@@ -18,7 +18,7 @@ class AppointmentController {
     private final AppointmentService appointmentService;
 
     @Autowired
-    public AppointmentController(MedicalOfficeService medicalOfficeService, AppointmentService appointmentService) {
+    AppointmentController(MedicalOfficeService medicalOfficeService, AppointmentService appointmentService) {
         this.medicalOfficeService = medicalOfficeService;
         this.appointmentService = appointmentService;
     }

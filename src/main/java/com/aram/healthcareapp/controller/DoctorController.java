@@ -2,15 +2,18 @@ package com.aram.healthcareapp.controller;
 
 import com.aram.healthcareapp.domain.Appointment;
 import com.aram.healthcareapp.domain.Doctor;
-import com.aram.healthcareapp.domain.exception.DoctorDoesNotExistException;
+import com.aram.healthcareapp.domain.exception.ResourceDoesNotExistException;
 import com.aram.healthcareapp.service.AppointmentService;
 import com.aram.healthcareapp.service.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Optional;
+
+import static java.lang.String.format;
 
 
 @RestController
@@ -44,11 +47,12 @@ class DoctorController {
 
     Doctor findById(Integer id) {
         Optional<Doctor> doctorOptional = doctorService.findById(id);
-        return doctorOptional.orElseThrow(() -> new DoctorDoesNotExistException(id));
+        return doctorOptional.orElseThrow(
+            () -> new ResourceDoesNotExistException(format("Doctor with id %d does not exist",id)));
     }
 
     @PostMapping
-    ResponseEntity<Doctor> save(@RequestBody Doctor doctor) {
+    ResponseEntity<Doctor> saveDoctor(@RequestBody @Valid Doctor doctor) {
         Doctor savedDoctor = doctorService.save(doctor);
         return new ResponseEntity<>(doctor, HttpStatus.CREATED);
     }
