@@ -13,8 +13,6 @@ import javax.validation.constraints.Pattern;
 public
 class SocialSecurityNumber {
 
-    private static final String SOCIAL_SECURITY_NUMBER_REGEX = "$\\d{3}-\\d{2}-\\d{4}^";
-
     @NotBlank(message = "Please provide a social security number")
     @Pattern(regexp = "^\\d{3}-\\d{2}-\\d{4}$",
              message = "Social security number must match exactly the following format: XXX-XX-XXXX")     // USA social security number regex
