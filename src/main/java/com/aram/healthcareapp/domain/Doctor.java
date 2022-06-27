@@ -1,12 +1,12 @@
 package com.aram.healthcareapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -17,12 +17,12 @@ import javax.validation.constraints.Pattern;
 @ToString
 public class Doctor extends AbstractPerson {
 
-    @Column(name = "speciality")
-    @NotBlank(message = "Please provide a medical speciality")
-    @Pattern(regexp = "^[A-Za-z ]+$", message = "Please provide a valid medical speciality")
-    private final String speciality;
+    @Valid
+    @ManyToOne
+    @JoinColumn(name = "speciality_id")
+    private final Speciality speciality;
 
-    public Doctor(Integer id, Name name, String speciality) {
+    public Doctor(Integer id, Name name, Speciality speciality) {
         super(id, name);
         this.speciality = speciality;
     }

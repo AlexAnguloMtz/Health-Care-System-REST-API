@@ -1,9 +1,16 @@
-INSERT INTO doctor(paternal_surname, maternal_surname, first_name, middle_name, speciality)
-    VALUES("Jimenez", "Pinos", "Luis", "Abraham", "Internal Medicine"),
-          ("Suarez", "Rodriguez", "Daniel", "Ariel", "Otorhinolaryngology"),
-          ("Mendez", "Vasquez", "Rodrigo", "Daniel", "Neumology"),
-          ("Daniels", "Rivera", "Luis", "Miguel", "Dermatology"),
-          ("Melendez", "Avila", "Laura",  "Lizbeth", "Pediatrics");
+INSERT INTO speciality(name)
+    VALUES("Neurology"),
+          ("Internal Medicine"),
+          ("Otorhinolaryngology"),
+          ("Dermatology"),
+          ("General Surgery");
+
+INSERT INTO doctor(speciality_id, paternal_surname, maternal_surname, first_name, middle_name)
+    VALUES(1, "Jimenez", "Pinos", "Luis", "Abraham"),
+          (2, "Suarez", "Rodriguez", "Daniel", "Ariel"),
+          (3, "Mendez", "Vasquez", "Rodrigo", "Daniel"),
+          (4, "Daniels", "Rivera", "Luis", "Miguel"),
+          (5, "Melendez", "Avila", "Laura",  "Lizbeth");
 
 INSERT INTO patient(paternal_surname, maternal_surname, first_name, middle_name, social_security_number)
     VALUES("Arce", "Pinos", "Daniel", "Manuel", "423-53-6346"),
@@ -16,7 +23,6 @@ INSERT INTO patient(paternal_surname, maternal_surname, first_name, middle_name,
           ("Zuniga", "Hernandez", "Claudia", "Laura", "354-13-5346"),
           ("Romo", "Arce", "Lizeth", "Diana", "423-57-6864"),
           ("Corral", "Verdugo", "Luisa", "Fernanda", "534-57-2446");
-
 
 INSERT INTO medical_office(office_number, floor)
     VALUES(100,1),

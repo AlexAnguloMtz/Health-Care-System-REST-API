@@ -14,8 +14,11 @@ public
 class SocialSecurityNumber {
 
     @NotBlank(message = "Please provide a social security number")
+
+    // USA social security number regex
     @Pattern(regexp = "^\\d{3}-\\d{2}-\\d{4}$",
-             message = "Social security number must match exactly the following format: XXX-XX-XXXX")     // USA social security number regex
+             message = "Social security number must match exactly the following format: XXX-XX-XXXX")
+
     private final String socialSecurityNumber;
 
     public SocialSecurityNumber(String socialSecurityNumber) {

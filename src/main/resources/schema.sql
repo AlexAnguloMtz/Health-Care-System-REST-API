@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS appointment;
 DROP TABLE IF EXISTS doctor;
 DROP TABLE IF EXISTS patient;
 DROP TABLE IF EXISTS medical_office;
+DROP TABLE IF EXISTS speciality;
 
 CREATE TABLE patient(
     id INT NOT NULL AUTO_INCREMENT,
@@ -13,13 +14,23 @@ CREATE TABLE patient(
     PRIMARY KEY(id)
 )  ENGINE=INNODB;
 
+CREATE TABLE speciality(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL,
+    PRIMARY KEY(id)
+)  ENGINE=INNODB;
+
 CREATE TABLE doctor(
     id INT NOT NULL AUTO_INCREMENT,
-    speciality VARCHAR(30) NOT NULL,
+    speciality_id INT,
     paternal_surname VARCHAR(40) NOT NULL,
     maternal_surname VARCHAR(40) NOT NULL,
     first_name VARCHAR(40) NOT NULL,
     middle_name VARCHAR(40) NOT NULL,
+    FOREIGN KEY (speciality_id)
+        REFERENCES speciality(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
     PRIMARY KEY(id)
 )  ENGINE=INNODB;
 
